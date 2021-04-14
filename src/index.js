@@ -71,4 +71,23 @@ function turnToyToHTML(toyPOJO){
   toyCard.append(toyName, toyPic, likes, likeButton)
 
   toyCollection.append(toyCard)
+
+  likeButton.addEventListener("click",(e)=> {
+    fetch(`http://localhost:3000/toys/${toyPOJO.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+    },
+    body: JSON.stringify({
+      likes: toyPOJO.likes + 1
+
+    })
+  })
+  .then(res => res.json())
+  .then((updatedLike) => {
+    likes.innerText = `${updatedLike.likes} Likes`
+    toyPOJO.likes = updatedLike.likes
+ })
+})
 }
