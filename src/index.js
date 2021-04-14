@@ -71,6 +71,4 @@ function turnToyToHTML(toyPOJO){
   toyCard.append(toyName, toyPic, likes, likeButton)
 
   toyCollection.append(toyCard)
-
-  
 }
